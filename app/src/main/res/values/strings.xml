@@ -2,4 +2,8 @@
     <string name="app_name">Kavak_bookstore_challenge</string>
     <string name="book_store">Book store</string>
     <string name="error">Error de red</string>
+    <string name="best_sellers">Best Sellers</string>
+    <string name="history">History</string>
+    <string name="science">Science</string>
+    <string name="business">Business</string>
 </resources>

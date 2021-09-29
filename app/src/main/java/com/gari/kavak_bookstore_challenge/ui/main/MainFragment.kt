@@ -17,13 +17,25 @@ import dagger.hilt.android.AndroidEntryPoint
 class MainFragment : Fragment() {
 
     private val mainViewModel: MainViewModel by viewModels()
-    private val booksAdapter = BooksAdapter()
+    private val bestSellersAdapter = BooksAdapter()
+    private val historyBooksAdapter = BooksAdapter()
+    private val scienceBooksAdapter = BooksAdapter()
+    private val businessBooksAdapter = BooksAdapter()
 
     private var _binding: MainFragmentBinding? = null
     private val binding get() = _binding ?: throw UninitializedPropertyAccessException()
 
-    private val postsObserver = Observer<List<Book>?> {
-        booksAdapter.submitList(it)
+    private val bestSellersObserver = Observer<List<Book>?> {
+        bestSellersAdapter.submitList(it)
+    }
+    private val historyBooksObserver = Observer<List<Book>?> {
+        historyBooksAdapter.submitList(it)
+    }
+    private val scienceBooksObserver = Observer<List<Book>?> {
+        scienceBooksAdapter.submitList(it)
+    }
+    private val businessBooksObserver = Observer<List<Book>?> {
+        businessBooksAdapter.submitList(it)
     }
 
     override fun onCreateView(
@@ -39,7 +51,10 @@ class MainFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         with(binding) {
             toolbar.title = getString(R.string.book_store)
-            productsRecyclerView.adapter = booksAdapter
+            bestSellersRecyclerView.adapter = bestSellersAdapter
+            historyRecyclerView.adapter = historyBooksAdapter
+            scienceRecyclerView.adapter = scienceBooksAdapter
+            businessRecyclerView.adapter = businessBooksAdapter
             swipeRefreshLayout.setOnRefreshListener {
                 mainViewModel.fetchBooks()
             }
@@ -55,7 +70,10 @@ class MainFragment : Fragment() {
                 }
             }
         }
-        mainViewModel.books.observe(viewLifecycleOwner, postsObserver)
+        mainViewModel.bestSellersbooks.observe(viewLifecycleOwner, bestSellersObserver)
+        mainViewModel.historyBooks.observe(viewLifecycleOwner, historyBooksObserver)
+        mainViewModel.scienceBooks.observe(viewLifecycleOwner, scienceBooksObserver)
+        mainViewModel.businessBooks.observe(viewLifecycleOwner, businessBooksObserver)
     }
 
     override fun onDestroyView() {
