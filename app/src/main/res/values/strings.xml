@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Kavak_bookstore_challenge</string>
+    <string name="book_store">Book store</string>
+    <string name="error">Error de red</string>
 </resources>
