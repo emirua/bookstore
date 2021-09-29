@@ -1,0 +1,2 @@
+rootProject.name = "Kavak_bookstore_challenge"
+include ':app'
